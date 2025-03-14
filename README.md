@@ -86,12 +86,5 @@ The dataset used is the "Bank Marketing" dataset from the UCI Machine Learning R
 - Hyperparameter optimization with GridSearchCV
 - Adam optimizer for MLP models
 
-## Future Work
-1. Try different training techniques like boosting
-2. Implement feature extraction methods like PCA
-3. Explore ensemble methods to improve performance
-4. Investigate other advanced sampling techniques
-5. Optimize model parameters further for better recall of the minority class
-
 ## Conclusion
 This project demonstrates the effectiveness of SVM and MLP models in predicting bank telemarketing campaign outcomes. While MLP shows better overall accuracy, SVM provides better recall for the minority class, which is crucial in this application. The results highlight the importance of addressing class imbalance through appropriate sampling techniques for effective predictive modelling in marketing campaigns.
