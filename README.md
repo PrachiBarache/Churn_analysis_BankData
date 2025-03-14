@@ -91,13 +91,7 @@ The dataset used is the "Bank Marketing" dataset from the UCI Machine Learning R
 2. Implement feature extraction methods like PCA
 3. Explore ensemble methods to improve performance
 4. Investigate other advanced sampling techniques
-5. Optimize model parameters further for better recall on the minority class
+5. Optimize model parameters further for better recall of the minority class
 
 ## Conclusion
-This project demonstrates the effectiveness of SVM and MLP models in predicting bank telemarketing campaign outcomes. While MLP shows better overall accuracy, SVM provides better recall for the minority class, which is crucial in this application. The results highlight the importance of addressing class imbalance through appropriate sampling techniques for effective predictive modeling in marketing campaigns.
-
-## References
-1. S. Palaniappan, A. Mustapha, C. Feresa, M. Foozy, and R. Atan, "Customer Profiling using Classification Approach for Bank Telemarketing," Int. J. Informatics Vis., vol. 1, no. 4, pp. 214–217, 2017.
-2. Sérgio Moro, Paulo Cortez, Paulo Rita, "A data-driven approach to predict the success of bank telemarketing," Decision Support Systems, Volume 62, 2014, Pages 22-31, ISSN 0167-9236, https://doi.org/10.1016/j.dss.2014.03.001.
-3. S. Moro, P. Rita, and P. Cortez. Bank Marketing. UCI Machine Learning Repository, 2012. DOI: https://doi.org/10.24432/C5K306.
-4. Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. "SMOTE: Synthetic Minority Over-sampling Technique." https://arxiv.org/abs/1106.1813
+This project demonstrates the effectiveness of SVM and MLP models in predicting bank telemarketing campaign outcomes. While MLP shows better overall accuracy, SVM provides better recall for the minority class, which is crucial in this application. The results highlight the importance of addressing class imbalance through appropriate sampling techniques for effective predictive modelling in marketing campaigns.
