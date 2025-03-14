@@ -1,4 +1,3 @@
-# Predicting-Bank-Telemarketing-Campaign-Outcomes
 # Bank Telemarketing Success Prediction
 
 ## Project Overview
