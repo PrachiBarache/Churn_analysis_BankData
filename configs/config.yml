@@ -1,0 +1,225 @@
+# config/config.yaml
+# Configuration for Customer Churn Prediction System
+
+# Basic settings
+project_name: "Customer Churn Prediction"
+version: "1.0.0"
+random_state: 42
+test_size: 0.2
+output_dir: "outputs"
+target_column: "churn"
+id_column: "customer_id"
+primary_metric: "auc"
+maximize_metric: true
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/churn_prediction.log"
+
+# Data loader
+data_loader:
+  data_path: "data/raw/customer_data.csv"
+  file_type: "csv"
+  csv_params:
+    sep: ","
+    encoding: "utf-8"
+    low_memory: false
+  target_column: "churn"
+  id_column: "customer_id"
+  stratify: true
+  test_size: 0.2
+  random_state: 42
+
+# Preprocessor
+preprocessor:
+  numerical_features:
+    - "tenure"
+    - "monthly_charges"
+    - "total_charges"
+    - "age"
+  categorical_features:
+    - "gender"
+    - "partner"
+    - "dependents"
+    - "phone_service"
+    - "multiple_lines"
+    - "internet_service"
+    - "online_security"
+    - "online_backup"
+    - "device_protection"
+    - "tech_support"
+    - "streaming_tv"
+    - "streaming_movies"
+    - "contract"
+    - "paperless_billing"
+    - "payment_method"
+  date_features:
+    - "signup_date"
+    - "last_activity_date"
+  drop_features:
+    - "customer_name"
+    - "note"
+  numerical_imputer: "median"
+  categorical_imputer: "most_frequent"
+  encoding_method: "onehot"
+  scaling_method: "standard"
+  drop_original_date_features: true
+  reference_date: "2023-01-01"
+
+# Features
+features:
+  interaction:
+    columns:
+      - "tenure"
+      - "monthly_charges"
+      - "total_charges"
+    poly_degree: 2
+    n_components: 0.95
+  behavioral:
+    time_columns:
+      - "signup_date"
+      - "last_activity_date"
+    activity_columns:
+      - "monthly_activity"
+      - "previous_monthly_activity"
+      - "support_calls"
+    spending_columns:
+      - "monthly_charges"
+      - "additional_services_charges"
+      - "overage_charges"
+
+# Models
+models:
+  types:
+    - "logistic_regression"
+    - "decision_tree"
+    - "random_forest"
+    - "gradient_boosting"
+    - "xgboost"
+    - "lightgbm"
+    - "neural_network"
+  params:
+    logistic_regression:
+      C: 1.0
+      class_weight: "balanced"
+      max_iter: 1000
+      random_state: 42
+    decision_tree:
+      max_depth: 5
+      min_samples_split: 2
+      class_weight: "balanced"
+      random_state: 42
+    random_forest:
+      n_estimators: 100
+      max_depth: 10
+      min_samples_split: 2
+      class_weight: "balanced"
+      random_state: 42
+      n_jobs: -1
+    gradient_boosting:
+      n_estimators: 100
+      learning_rate: 0.1
+      max_depth: 3
+      random_state: 42
+    xgboost:
+      n_estimators: 100
+      learning_rate: 0.1
+      max_depth: 5
+      subsample: 0.8
+      colsample_bytree: 0.8
+      objective: "binary:logistic"
+      random_state: 42
+      n_jobs: -1
+    lightgbm:
+      n_estimators: 100
+      learning_rate: 0.1
+      max_depth: 5
+      num_leaves: 31
+      subsample: 0.8
+      colsample_bytree: 0.8
+      objective: "binary"
+      class_weight: "balanced"
+      random_state: 42
+      n_jobs: -1
+    neural_network:
+      hidden_layers: [64, 32]
+      dropout_rate: 0.2
+      activation: "relu"
+      optimizer: "adam"
+      batch_size: 32
+      epochs: 50
+      patience: 10
+      random_state: 42
+
+# Evaluation
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "auc"
+    - "average_precision"
+    - "profit_metric"
+  threshold: 0.5
+  output_dir: "outputs/evaluation"
+  savings_per_retained: 100
+  cost_per_intervention: 10
+
+# Inference
+inference:
+  model_dir: "outputs/models"
+  model_name: "xgboost"
+  model_type: "xgboost"
+  model_version: "1.0.0"
+  model_creation_date: "2023-01-01"
+  threshold: 0.5
+  output_path: "outputs/predictions/predictions.csv"
+  id_column: "customer_id"
+  additional_output_columns:
+    - "customer_name"
+    - "email"
+    - "phone"
+  primary_metric: "auc"
+  metric_value: 0.92
+  features:
+    interaction:
+      columns:
+        - "tenure"
+        - "monthly_charges"
+        - "total_charges"
+      poly_degree: 2
+      n_components: 0.95
+    behavioral:
+      time_columns:
+        - "signup_date"
+        - "last_activity_date"
+      activity_columns:
+        - "monthly_activity"
+        - "previous_monthly_activity"
+        - "support_calls"
+      spending_columns:
+        - "monthly_charges"
+        - "additional_services_charges"
+        - "overage_charges"
+
+# Serving
+serving:
+  host: "0.0.0.0"
+  port: 5000
+  workers: 4
+  timeout: 30
+  batch_size: 1000
+
+# Monitoring
+monitoring:
+  enable: true
+  metrics_path: "monitoring/metrics"
+  data_drift_threshold: 0.1
+  model_performance_threshold: 0.05
+  retraining_frequency: "weekly"
+  alert_emails:
+    - "data_science_team@example.com"
+    - "ml_ops@example.com"
